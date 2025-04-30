@@ -39,9 +39,10 @@ export default function Home() {
   async function fetchData(filter='') {
     let res = await fetch(`/api/get-doctors?${filter}&page=${page}`);
     res = await res.json();
-    if(res.error) return;
 
     let {doctors, totalResults} = res;
+
+    if(!doctors || !totalResults) return;
 
     let {by, order} = orederOpe.current;
     if(by) doctors.sort((a, b) => order == 'ase' ? (a[by] - b[by]) : (b[by] - a[by]));

@@ -11,7 +11,6 @@ async function next(req, res) {
         let doc = await DoctorModel.create({experience, fee, languages, facility, consultMode, name, state, hospital, specialization});
         return res.json({msg: 'create successfully', doctorInfo: doc});
     } catch(e) {
-        console.log(e);
         return res.json({error: 'some error comes'})
     }
 
