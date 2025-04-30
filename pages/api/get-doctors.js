@@ -11,7 +11,6 @@ async function next(req, res) {
 
     try{
         let doctors = await DoctorModel.find();
-        let totalResults = doctors.length;
 
         if(query['consult-mode'] && query['consult-mode'].toLowerCase() != 'both') {
             doctors = doctors.filter(doc => doc.consultMode.map(e => e.toLowerCase()).includes(query['consult-mode'].toLowerCase()));
@@ -37,6 +36,8 @@ async function next(req, res) {
         }
 
         doctors = doctors.slice(page*10, page*10 + 10);
+
+        let totalResults = doctors.length;
 
         return res.json({doctors, totalResults});
 
