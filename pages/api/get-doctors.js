@@ -35,9 +35,10 @@ async function next(req, res) {
             doctors = doctors.filter(doc => doc.consultMode == query['facility']);   
         }
 
+        let totalResults = doctors.length;
+        
         doctors = doctors.slice(page*10, page*10 + 10);
 
-        let totalResults = doctors.length;
 
         return res.json({doctors, totalResults});
 
